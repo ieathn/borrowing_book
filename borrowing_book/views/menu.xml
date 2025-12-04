@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- MENU GỐC -->
+    <menuitem id="menu_library_root"
+              name="Library"
+              sequence="10"
+              action="action_library_book"
+              web_icon="borrowing_book,static/description/icon.png"/>
+
+    <!-- Các menu con - CHỈ DÙNG ID KHÔNG CẦN PREFIX -->
+    <menuitem id="menu_library_book"
+              name="Books"
+              parent="menu_library_root"
+              action="action_library_book"
+              sequence="10"/>
+
+    <menuitem id="menu_library_book_copy"
+              name="Book Copies"
+              parent="menu_library_root"
+              action="action_library_book_copy"
+              sequence="20"/>
+
+    <menuitem id="menu_library_member"
+              name="Members"
+              parent="menu_library_root"
+              action="action_library_member"
+              sequence="30"/>
+
+    <menuitem id="menu_library_reservation"
+              name="Reservations"
+              parent="menu_library_root"
+              action="action_library_reservation"
+              sequence="40"/>
+
+    <menuitem id="menu_library_transaction"
+              name="Transactions"
+              parent="menu_library_root"
+              action="action_library_transaction"
+              sequence="50"/>
+
+    <menuitem id="menu_library_fine"
+              name="Fines"
+              parent="menu_library_root"
+              action="action_library_fine"
+              sequence="60"/>
+
+</odoo>

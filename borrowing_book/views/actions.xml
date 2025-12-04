@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- ============= ACTIONS CHO TẤT CẢ CÁC MODEL ============= -->
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_library_book_copy" model="ir.actions.act_window">
+        <field name="name">Book Copies</field>
+        <field name="res_model">library.book.copy</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_library_member" model="ir.actions.act_window">
+        <field name="name">Members</field>
+        <field name="res_model">library.member</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_library_reservation" model="ir.actions.act_window">
+        <field name="name">Reservations</field>
+        <field name="res_model">library.reservation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_library_transaction" model="ir.actions.act_window">
+        <field name="name">Transactions</field>
+        <field name="res_model">library.transaction</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_library_fine" model="ir.actions.act_window">
+        <field name="name">Fines</field>
+        <field name="res_model">library.fine</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

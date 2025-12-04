@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Book Copy Sequence (không nhảy số) -->
+        <record id="seq_library_book_copy" model="ir.sequence">
+            <field name="name">Library Book Copy</field>
+            <field name="code">library.book.copy</field>
+            <field name="prefix">BCP%(y)s-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>        <!-- Không nhảy số -->
+        </record>
+
+        <!-- Transaction Sequence (không nhảy số) -->
+        <record id="seq_library_transaction" model="ir.sequence">
+            <field name="name">Library Transaction</field>
+            <field name="code">library.transaction</field>
+            <field name="prefix">TRX%(y)s-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>
+        </record>
+
+        <!-- Reservation Sequence (không nhảy số) -->
+        <record id="seq_library_reservation" model="ir.sequence">
+            <field name="name">Library Reservation</field>
+            <field name="code">library.reservation</field>
+            <field name="prefix">RSV%(y)s-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>
+        </record>
+
+        <!-- Fine Sequence (không nhảy số) -->
+        <record id="seq_library_fine" model="ir.sequence">
+            <field name="name">Library Fine</field>
+            <field name="code">library.fine</field>
+            <field name="prefix">FINE%(y)s-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">no_gap</field>
+        </record>
+
+    </data>
+</odoo>
