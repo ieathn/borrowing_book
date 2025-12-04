@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- TREE/LIST VIEW -->
+    <record id="view_library_book_list" model="ir.ui.view">
+        <field name="name">library.book.list</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <list string="Library Books">
+                <field name="name"/>
+                <field name="author"/>
+                <field name="publisher"/>
+                <field name="publish_year"/>
+                <field name="isbn"/>
+                <field name="category"/>
+                <field name="total_copies"/>
+                <field name="available_copies"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="view_library_book_form" model="ir.ui.view">
+        <field name="name">library.book.form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Book">
+                <sheet>
+
+                    <group>
+                        <!-- Tên sách & thông tin từ product.template -->
+                        <field name="name"/>
+                        <field name="is_library_book"/>
+                        <field name="author"/>
+                        <field name="publisher"/>
+                        <field name="publish_year"/>
+                        <field name="isbn"/>
+                        <field name="library_code"/>
+                        <field name="shelf_location"/>
+                        <field name="category" widget="radio"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Copies">
+                            <field name="copy_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="status"/>
+                                    <field name="current_borrower_id"/>
+                                    <field name="borrow_count"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>
