@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- MENU GỐC -->
     <menuitem id="menu_library_root"
               name="Library"
               sequence="10"
               action="action_library_book"
               web_icon="borrowing_book,static/description/icon.png"/>
 
-    <!-- Các menu con - CHỈ DÙNG ID KHÔNG CẦN PREFIX -->
     <menuitem id="menu_library_book"
               name="Books"
               parent="menu_library_root"
@@ -44,5 +42,6 @@
               parent="menu_library_root"
               action="action_library_fine"
               sequence="60"/>
+
 
 </odoo>
