@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-        <!-- ============= ACTIONS CHO TẤT CẢ CÁC MODEL ============= -->
     <record id="action_library_book" model="ir.actions.act_window">
         <field name="name">Books</field>
         <field name="res_model">library.book</field>
@@ -37,4 +36,5 @@
         <field name="res_model">library.fine</field>
         <field name="view_mode">list,form</field>
     </record>
+
 </odoo>
