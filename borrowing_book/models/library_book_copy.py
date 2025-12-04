@@ -6,12 +6,6 @@ class LibraryBookCopy(models.Model):
     _name = 'library.book.copy'
     _description = 'Physical Book Copy'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-
-    # name = fields.Char(
-    #     string='Copy Code',
-    #     default=lambda self: self.env['ir.sequence'].next_by_code('library.book.copy'),
-    #     tracking=True
-    # )
     
     name = fields.Char(
         string='Copy Code',
@@ -81,3 +75,4 @@ class LibraryBookCopy(models.Model):
         for rec in self:
             rec.borrow_count = len(rec.transaction_ids)
             rec.borrower_history_ids = rec.transaction_ids.mapped('member_id')
+
