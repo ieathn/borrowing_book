@@ -5,7 +5,8 @@
         <field name="name">library.transaction.list</field>
         <field name="model">library.transaction</field>
         <field name="arch" type="xml">
-            <list string="Transactions" decoration-danger="is_overdue">
+            <list string="Transactions" decoration-danger="is_overdue and not fine_paid" 
+                                        decoration-success="fine_paid">
                 <field name="name"/>
                 <field name="member_id"/>
                 <field name="book_id"/>
@@ -27,29 +28,23 @@
             <form string="Transaction">
 
                 <header>
+                    <!-- Mark as Borrowed -->
                     <button name="action_mark_borrowed"
                             string="Mark as Borrowed"
-                            type="object">
-                        <modifier name="invisible">
-                            [["status", "=", "borrowed"]]
-                        </modifier>
-                    </button>
+                            type="object"
+                            invisible="status == 'borrowed'"/>
 
+                    <!-- Mark as Late -->
                     <button name="action_mark_late"
                             string="Mark as Late"
-                            type="object">
-                        <modifier name="invisible">
-                            [["status", "!=", "borrowed"]]
-                        </modifier>
-                    </button>
+                            type="object"
+                            invisible="status != 'borrowed'"/>
 
+                    <!-- Mark as Returned -->
                     <button name="action_mark_returned"
                             string="Mark as Returned"
-                            type="object">
-                        <modifier name="invisible">
-                            [["status", "=", "returned"]]
-                        </modifier>
-                    </button>
+                            type="object"
+                            invisible="status == 'returned'"/>
 
                     <field name="status" widget="statusbar"
                            statusbar_visible="borrowed,late,returned"/>
@@ -88,4 +83,3 @@
     </record>
 
 </odoo>
-
