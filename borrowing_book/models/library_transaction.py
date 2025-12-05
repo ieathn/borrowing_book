@@ -78,16 +78,24 @@ class LibraryTransaction(models.Model):
         string='Fine Record',
         readonly=True
     )
+    
+    fine_paid = fields.Boolean(
+    string='Fine Paid',
+    related='fine_id.paid',
+    store=True
+)
 
     @api.depends('expected_return_date', 'return_date', 'status')
     def _compute_late_days(self):
         today = fields.Date.today()
         for rec in self:
             late = 0
+            #Đã trả sách
             if rec.status == 'returned' and rec.return_date and rec.expected_return_date:
                 diff = (rec.return_date - rec.expected_return_date).days
                 late = diff if diff > 0 else 0
-            elif rec.status == 'borrowed' and rec.expected_return_date and today > rec.expected_return_date:
+            #Chưa trả sách hoắc đã chuyển sang trạng thái trễ
+            elif rec.status in ('borrowed', 'late')  and rec.expected_return_date and today > rec.expected_return_date:
                 late = (today - rec.expected_return_date).days
             rec.late_days = late
             rec.is_overdue = late > 0
@@ -112,12 +120,40 @@ class LibraryTransaction(models.Model):
             if rec.book_copy_id:
                 rec.book_copy_id.status = 'available'
                 rec.book_copy_id.current_borrower_id = False
+                
+            rec._compute_late_days()
+            rec._compute_fine_amount()
+
+            if rec.fine_amount > 0:
+                if rec.fine_id:
+                    rec.fine_id.amount = rec.fine_amount
+                else:
+                    fine = self.env['library.fine'].create({
+                        'transaction_id': rec.id,
+                    })
+                    rec.fine_id = fine.id
+            else:
+                rec.fine_id = False
 
     def action_mark_late(self):
         for rec in self:
             rec.status = 'late'
             if rec.book_copy_id:
                 rec.book_copy_id.status = 'on_loan'
+                
+            rec._compute_late_days()
+            rec._compute_fine_amount()
+
+            if rec.fine_amount > 0:
+                if rec.fine_id:
+                    rec.fine_id.amount = rec.fine_amount
+                else:
+                    fine = self.env['library.fine'].create({
+                        'transaction_id': rec.id,
+                    })
+                    rec.fine_id = fine.id
+            else:
+                rec.fine_id = False
 
     def action_mark_borrowed(self):
         for rec in self:
